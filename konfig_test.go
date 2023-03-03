@@ -7,5 +7,5 @@ import (
 )
 
 func TestRead(t *testing.T) {
-	konfig.ReadFile()
+	konfig.ReadConfig("test.properties")
 }
