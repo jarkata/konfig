@@ -6,8 +6,8 @@ import (
 	"strings"
 )
 
-func parse(config string) map[string]string {
-	var cache = make(map[string]string)
+func parse(config string) map[string]*string {
+	var cache = make(map[string]*string)
 	lines := strings.Split(config, "\n")
 	for _, line := range lines {
 		if strings.HasPrefix(line, "#") {
@@ -17,12 +17,12 @@ func parse(config string) map[string]string {
 		if len(kvs) != 2 {
 			continue
 		}
-		cache[kvs[0]] = kvs[1]
+		cache[kvs[0]] = &kvs[1]
 	}
 	return cache
 }
 
-func ReadConfig(filename string) (map[string]string, error) {
+func ReadConfig(filename string) (map[string]*string, error) {
 	file, err := os.Open(filename)
 	if err != nil {
 		return nil, err
