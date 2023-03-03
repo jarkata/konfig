@@ -22,9 +22,6 @@ func parse(config string) map[string]string {
 	return cache
 }
 
-type Konfig struct {
-}
-
 func ReadConfig(filename string) (map[string]string, error) {
 	file, err := os.Open(filename)
 	if err != nil {
