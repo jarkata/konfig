@@ -20,6 +20,10 @@ func GetCache(key string) string {
 }
 
 func init() {
+	Init()
+}
+
+func Init() {
 	path := getFileName()
 	cache, err := ReadConfig(path)
 	if err != nil {
