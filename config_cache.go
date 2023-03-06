@@ -3,6 +3,7 @@ package konfig
 import (
 	"fmt"
 	"os"
+	"sync"
 )
 
 type GlobalConfig struct {
@@ -15,8 +16,15 @@ func (config *GlobalConfig) SetCache(cache map[string]string) {
 	config.cache = cache
 }
 
+var once sync.Once
+
 func GetCache(key string) string {
-	return Config.cache[key]
+	val := Config.cache[key]
+	if len(val) <= 0 {
+		once.Do(Init)
+		val = Config.cache[key]
+	}
+	return val
 }
 
 func init() {
