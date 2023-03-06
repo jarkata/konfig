@@ -44,6 +44,7 @@ func Init() {
 
 func getFileName() string {
 	path := os.Getenv("config_path")
+	fmt.Println("path:", path)
 	if len(path) <= 0 {
 		dir, _ := os.Getwd()
 		return dir + "/konfig.properties"
