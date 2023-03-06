@@ -13,11 +13,11 @@ func parse(config string) map[string]string {
 		if strings.HasPrefix(line, "#") {
 			continue
 		}
-		kvs := strings.Split(line, "=")
-		if len(kvs) != 2 {
+		index := strings.Index(line, "=")
+		if index <= 0 {
 			continue
 		}
-		cache[kvs[0]] = kvs[1]
+		cache[line[:index]] = line[index+1:]
 	}
 	return cache
 }
