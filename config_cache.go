@@ -44,7 +44,7 @@ func Init() {
 }
 
 func getFileName() string {
-	var path = os.Getenv("config_path")
+	var path = os.Getenv("CONFIG_PATH")
 	slog.Info("ConfigPath", "Path", path)
 	if len(path) <= 0 {
 		dir, _ := os.Getwd()
