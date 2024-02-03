@@ -1,7 +1,7 @@
 package konfig
 
 import (
-	"fmt"
+	"log/slog"
 	"os"
 	"sync"
 )
@@ -33,21 +33,22 @@ func init() {
 
 func Init() {
 	path := getFileName()
+	slog.Info("Init", "FileName", path)
 	cache, err := ReadConfig(path)
 	if err != nil {
-		fmt.Println("load config failed:", err)
+		slog.Error("load config failed:", err)
 		return
 	}
-	fmt.Println("loading config:", cache)
+	slog.Info("Init", "Cache:", cache)
 	Config.SetCache(cache)
 }
 
 func getFileName() string {
-	path := os.Getenv("config_path")
-	fmt.Println("path:", path)
+	var path = os.Getenv("config_path")
+	slog.Info("ConfigPath", "Path", path)
 	if len(path) <= 0 {
 		dir, _ := os.Getwd()
-		return dir + "/konfig.properties"
+		return dir + "/application.properties"
 	}
 	return path
 }
