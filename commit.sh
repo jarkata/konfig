@@ -1,6 +1,6 @@
 #!/bin/bash
 
-##Gitee
+##Github
 
 msg=$1
 if [ -z "$msg" ];then
